@@ -58,14 +58,14 @@ public class Band {
 		}
 	}
 	
-	public void getInfoFromDB(String songID) {
-		String query = "SELECT * FROM Songs WHERE song_id = '" + songID + "';";
+	public void getInfoFromDB(String bandID) {
+		String query = "SELECT * FROM Bands WHERE band_id = '" + bandID + "';";
 		try {
 			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
 			Statement statement = conn.createStatement();
 			ResultSet results = statement.executeQuery(query);
 			if(results.next()) {
-				id = results.getString("song_id");
+				id = results.getString("band_id");
 				name = results.getString("band_name");
 				formationDate = Date.valueOf(results.getString("formationDate"));
 				breakupDate = Date.valueOf(results.getString("track_number"));

@@ -5,7 +5,7 @@ import org.sqlite.*;
 
 public class Song {
 	
-	public String id, title, artist;
+	public String id, title, artist, albumID;
 	public int trackNumber, length;
 	
 	public Song(String title, String artist) {
@@ -28,6 +28,7 @@ public class Song {
 				artist = results.getString("artist");
 				trackNumber = results.getInt("track_number");
 				length = results.getInt("length");
+				albumID = results.getString("album_id");
 			}
 			else {
 				id = "";
@@ -35,6 +36,7 @@ public class Song {
 				artist = "";
 				trackNumber = 0;
 				length = 0;
+				albumID = "";
 			}
 		}
 		catch(SQLException e) {
@@ -43,6 +45,7 @@ public class Song {
 			artist = "";
 			trackNumber = 0;
 			length = 0;
+			albumID = "";
 		}
 	}
 	
@@ -58,6 +61,7 @@ public class Song {
 				artist = results.getString("artist");
 				trackNumber = results.getInt("track_number");
 				length = results.getInt("length");
+				albumID = results.getString("album_id");
 			}
 			else {
 				id = "";
@@ -65,6 +69,7 @@ public class Song {
 				artist = "";
 				trackNumber = 0;
 				length = 0;
+				albumID = "";
 			}
 		}
 		catch(SQLException e) {
@@ -73,6 +78,7 @@ public class Song {
 			artist = "";
 			trackNumber = 0;
 			length = 0;
+			albumID = "";
 		}
 	}
 }
