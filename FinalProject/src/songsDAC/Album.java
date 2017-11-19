@@ -1,4 +1,4 @@
-package FinalProject;
+package songsDAC;
 import org.sqlite.*;
 
 public class Album {
