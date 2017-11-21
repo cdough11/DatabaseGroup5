@@ -6,7 +6,7 @@ import org.sqlite.*;
 
 public class User {
 
-	public String fName, lName, userID, emailAddress, favoriteSongsID;
+	public String fName, lName, userID, emailAddress;
 	public int age;
 	public boolean isModerator;
 	List<Song> favoriteSongs;
@@ -28,7 +28,6 @@ public class User {
 				emailAddress = results.getString("Email");
 				age = results.getInt("Age");
 				isModerator = results.getInt("is_Moderator") == 1;
-				favoriteSongsID = results.getString("favoriteSongsID");
 				
 				String favoriteSongsQuery = "SELECT * FROM FavoriteSongs WHERE user_id = '" + userID + "';";
 				Statement favoriteSongsStatement = conn.createStatement();

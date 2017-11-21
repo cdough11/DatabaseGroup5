@@ -10,6 +10,7 @@ public class Band {
 	public String id, name;
 	public Date formationDate, breakupDate;
 	public List<Member> members;
+	public List<Album> albums;
 	
 	public Band(String name, String formationDate) {
 		getInfoFromDB(name, formationDate);
@@ -39,6 +40,15 @@ public class Band {
 					String fName = bandMembersResults.getString("fName");
 					String lName = bandMembersResults.getString("lName");
 					members.add(new Member(fName, lName, id));
+				}
+				
+				String albumsQuery = "SELECT * FROM Albums WHERE band_id = '" + id + "';";
+				Statement albumsStatement = conn.createStatement();
+				ResultSet albumsResults = albumsStatement.executeQuery(albumsQuery);
+				albums = new ArrayList<Album>();
+				while(albumsResults.next()) {
+					String albumID = albumsResults.getString("album_id");
+					albums.add(new Album(albumID));
 				}
 			}
 			else {
