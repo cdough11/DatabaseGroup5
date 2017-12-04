@@ -5,7 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class viewAttendedPerformances {
+public class ViewAttendedPerformances {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -17,7 +17,7 @@ public class viewAttendedPerformances {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					viewAttendedPerformances window = new viewAttendedPerformances();
+					ViewAttendedPerformances window = new ViewAttendedPerformances();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +29,7 @@ public class viewAttendedPerformances {
 	/**
 	 * Create the application.
 	 */
-	public viewAttendedPerformances() {
+	public ViewAttendedPerformances() {
 		initialize();
 	}
 

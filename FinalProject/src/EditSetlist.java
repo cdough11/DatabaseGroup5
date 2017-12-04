@@ -5,7 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class editSetlist {
+public class EditSetlist {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -19,7 +19,7 @@ public class editSetlist {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					editSetlist window = new editSetlist();
+					EditSetlist window = new EditSetlist();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,7 +31,7 @@ public class editSetlist {
 	/**
 	 * Create the application.
 	 */
-	public editSetlist() {
+	public EditSetlist() {
 		initialize();
 	}
 

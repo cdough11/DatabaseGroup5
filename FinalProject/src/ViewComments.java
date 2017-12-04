@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class viewComments {
+public class ViewComments {
 
 	private JFrame frame;
 
@@ -15,7 +15,7 @@ public class viewComments {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					viewComments window = new viewComments();
+					ViewComments window = new ViewComments();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +27,7 @@ public class viewComments {
 	/**
 	 * Create the application.
 	 */
-	public viewComments() {
+	public ViewComments() {
 		initialize();
 	}
 

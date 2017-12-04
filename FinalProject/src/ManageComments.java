@@ -6,7 +6,7 @@ import javax.swing.JTextField;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
-public class manageComments {
+public class ManageComments {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -20,7 +20,7 @@ public class manageComments {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					manageComments window = new manageComments();
+					ManageComments window = new ManageComments();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +32,7 @@ public class manageComments {
 	/**
 	 * Create the application.
 	 */
-	public manageComments() {
+	public ManageComments() {
 		initialize();
 	}
 

@@ -5,7 +5,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class moderatorGUI {
+public class ModeratorGUI {
 
 	private JFrame frame;
 	private JTextField txtEnterBand;
@@ -17,7 +17,7 @@ public class moderatorGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					moderatorGUI window = new moderatorGUI();
+					ModeratorGUI window = new ModeratorGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -25,11 +25,15 @@ public class moderatorGUI {
 			}
 		});
 	}
+	
+	public void makeVisible() {
+		this.frame.setVisible(true);
+	}
 
 	/**
 	 * Create the application.
 	 */
-	public moderatorGUI() {
+	public ModeratorGUI() {
 		initialize();
 	}
 

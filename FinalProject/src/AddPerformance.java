@@ -2,10 +2,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import songsDAC.*;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-public class addPerformance {
+
+public class AddPerformance {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -19,7 +23,7 @@ public class addPerformance {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					addPerformance window = new addPerformance();
+					AddPerformance window = new AddPerformance();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,11 +31,10 @@ public class addPerformance {
 			}
 		});
 	}
-
 	/**
 	 * Create the application.
 	 */
-	public addPerformance() {
+	public AddPerformance() {
 		initialize();
 	}
 

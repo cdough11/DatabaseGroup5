@@ -10,6 +10,7 @@ public class User {
 	public int age;
 	public boolean isModerator;
 	List<Song> favoriteSongs;
+	public static boolean currentUserIsModerator;
 	
 	public User(String userID) {
 		getInfoFromDB(userID);
@@ -55,5 +56,26 @@ public class User {
 			age = 0;
 			isModerator = false;
 		}
+	}
+
+	public static boolean login(String email, String pWord) {
+		String query = "SELECT is_Moderator FROM Users WHERE Email = '" + email + "' AND password = '" + pWord + "';";
+		try {
+			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+			Statement statement = conn.createStatement();
+			ResultSet results = statement.executeQuery(query);
+			if(results.next()) {
+				currentUserIsModerator = results.getInt("is_Moderator") == 1;
+				return true;
+			}
+			else
+				currentUserIsModerator = false;
+				return false;
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		currentUserIsModerator = false;
+		return false;
 	}
 }

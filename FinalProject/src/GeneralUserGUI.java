@@ -9,7 +9,7 @@ import javax.swing.JTabbedPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class generalUserGUI {
+public class GeneralUserGUI {
 
 	private JFrame frame;
 	private JTextField editBandName;
@@ -21,7 +21,7 @@ public class generalUserGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					generalUserGUI window = new generalUserGUI();
+					GeneralUserGUI window = new GeneralUserGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,8 +33,12 @@ public class generalUserGUI {
 	/**
 	 * Create the application.
 	 */
-	public generalUserGUI() {
+	public GeneralUserGUI() {
 		initialize();
+	}
+	
+	public void makeVisible() {
+		this.frame.setVisible(true);
 	}
 
 	/**

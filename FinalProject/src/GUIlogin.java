@@ -2,9 +2,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import songsDAC.User;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GUIlogin {
 
@@ -63,6 +68,23 @@ public class GUIlogin {
 		password.setColumns(10);
 		
 		JButton loginBtn = new JButton("Submit");
+		loginBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				boolean valid = User.login(username.getText(), password.getText());
+				if(valid) {
+					if(User.currentUserIsModerator) {
+						ModeratorGUI window = new ModeratorGUI();
+						window.makeVisible();
+					}
+					else {
+						GeneralUserGUI window = new GeneralUserGUI();
+						window.makeVisible();
+					}
+				}
+					
+			}
+		});
 		loginBtn.setBounds(168, 143, 89, 23);
 		frame.getContentPane().add(loginBtn);
 	}
