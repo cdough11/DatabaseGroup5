@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.JTabbedPane;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 public class GeneralUserGUI {
@@ -68,13 +70,16 @@ public class GeneralUserGUI {
 		showFavs.setBounds(283, 10, 141, 23);
 		frame.getContentPane().add(showFavs);
 		
-		JButton btnNewButton = new JButton("Add Performance...");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		JButton addPerformance = new JButton("Add Performance...");
+		addPerformance.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AddPerformance window = new AddPerformance();
+				window.makeVisible();
 			}
 		});
-		btnNewButton.setBounds(10, 65, 139, 23);
-		frame.getContentPane().add(btnNewButton);
+		addPerformance.setBounds(10, 65, 139, 23);
+		frame.getContentPane().add(addPerformance);
 		
 		JButton btnNewButton_1 = new JButton("View Attended Performaces...");
 		btnNewButton_1.setBounds(144, 65, 214, 23);

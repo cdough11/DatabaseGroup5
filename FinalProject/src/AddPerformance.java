@@ -38,6 +38,10 @@ public class AddPerformance {
 		initialize();
 	}
 
+	public void makeVisible() {
+		this.frame.setVisible(true);
+	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
