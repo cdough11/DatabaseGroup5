@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 public class ViewAttendedPerformances {
 
@@ -46,10 +47,6 @@ public class ViewAttendedPerformances {
 		lblPerformacesAttended.setBounds(10, 11, 116, 14);
 		frame.getContentPane().add(lblPerformacesAttended);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 34, 414, 63);
-		frame.getContentPane().add(panel);
-		
 		JLabel lblPerormcaneId = new JLabel("Performance ID:");
 		lblPerormcaneId.setBounds(10, 108, 84, 14);
 		frame.getContentPane().add(lblPerormcaneId);
@@ -63,9 +60,16 @@ public class ViewAttendedPerformances {
 		lblComments.setBounds(10, 133, 62, 14);
 		frame.getContentPane().add(lblComments);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 158, 414, 92);
-		frame.getContentPane().add(panel_1);
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(10, 36, 414, 65);
+		frame.getContentPane().add(textPane);
+		
+		JTextPane textPane_1 = new JTextPane();
+		textPane_1.setBounds(10, 158, 414, 92);
+		frame.getContentPane().add(textPane_1);
 	}
-
+	
+	public void makeVisible() {
+		this.frame.setVisible(true);
+	}
 }

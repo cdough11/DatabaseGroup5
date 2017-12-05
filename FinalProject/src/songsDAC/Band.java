@@ -118,5 +118,30 @@ public class Band {
 			bandID = id;
 		}
 	}
+	public static void addBandToDB(String bandName) {
+		try {
+			String query = "INSERT INTO Bands (band_fname, band_lname, formation_date, breakup_date) VALUES ('" + bandName + "', null, null);";
+			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+			Statement statement;
+			statement = conn.createStatement();
+			statement.execute(query);
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
+	public static void deleteBandFromDB(String bandName) {
+		try {
+			String query = "DELETE FROM Bands WHERE band_name = '" + bandName + "';";
+			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+			Statement statement;
+			statement = conn.createStatement();
+			statement.execute(query);
+			conn.close();
+		}
+			catch(SQLException e) {
+				e.printStackTrace();
+		}
+	}
 }

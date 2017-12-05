@@ -2,12 +2,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-
-import songsDAC.*;
-
 import javax.swing.JLabel;
 import javax.swing.JButton;
-
 
 public class AddPerformance {
 
@@ -31,6 +27,7 @@ public class AddPerformance {
 			}
 		});
 	}
+
 	/**
 	 * Create the application.
 	 */
@@ -38,10 +35,6 @@ public class AddPerformance {
 		initialize();
 	}
 
-	public void makeVisible() {
-		this.frame.setVisible(true);
-	}
-	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -83,4 +76,7 @@ public class AddPerformance {
 		frame.getContentPane().add(addBtn);
 	}
 
+	public void makeVisible() {
+		this.frame.setVisible(true);
+	}
 }

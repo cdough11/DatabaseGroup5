@@ -1,4 +1,6 @@
 import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -8,8 +10,6 @@ import songsDAC.User;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class GUIlogin {
 
@@ -49,7 +49,7 @@ public class GUIlogin {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblUsername = new JLabel("Username");
+		JLabel lblUsername = new JLabel("Email:");
 		lblUsername.setBounds(181, 14, 59, 14);
 		frame.getContentPane().add(lblUsername);
 		

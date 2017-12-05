@@ -57,7 +57,7 @@ public class User {
 			isModerator = false;
 		}
 	}
-
+	
 	public static boolean login(String email, String pWord) {
 		String query = "SELECT is_Moderator FROM Users WHERE Email = '" + email + "' AND password = '" + pWord + "';";
 		try {
