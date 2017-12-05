@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 
 public class ViewComments {
 
@@ -44,9 +45,12 @@ public class ViewComments {
 		lblComments.setBounds(10, 11, 77, 14);
 		frame.getContentPane().add(lblComments);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 36, 414, 214);
-		frame.getContentPane().add(panel);
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(10, 36, 414, 214);
+		frame.getContentPane().add(textPane);
 	}
-
+	
+	public void makeVisible() {
+		this.frame.setVisible(true);
+	}
 }

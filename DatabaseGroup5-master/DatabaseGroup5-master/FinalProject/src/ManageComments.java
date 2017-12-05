@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ManageComments {
 
@@ -77,8 +79,18 @@ public class ManageComments {
 		userId.setColumns(10);
 		
 		JButton submitBtn = new JButton("Submit");
+		submitBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ModeratorGUI window = new ModeratorGUI();
+				window.makeVisible();
+			}
+		});
 		submitBtn.setBounds(335, 231, 89, 23);
 		frame.getContentPane().add(submitBtn);
 	}
-
+	
+	public void makeVisible() {
+		this.frame.setVisible(true);
+	}
 }

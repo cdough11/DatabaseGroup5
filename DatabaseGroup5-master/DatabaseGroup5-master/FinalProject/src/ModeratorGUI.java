@@ -77,10 +77,24 @@ public class ModeratorGUI {
 		frame.getContentPane().add(deleteBand);
 		
 		JButton editSetlist = new JButton("Edit Setlist...");
+		editSetlist.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				EditSetlist window = new EditSetlist();
+				window.makeVisible();
+			}
+		});
 		editSetlist.setBounds(10, 276, 116, 23);
 		frame.getContentPane().add(editSetlist);
 		
 		JButton manageComments = new JButton("Manage Comments...");
+		manageComments.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ManageComments window = new ManageComments();
+				window.makeVisible();
+			}
+		});
 		manageComments.setBounds(10, 310, 139, 23);
 		frame.getContentPane().add(manageComments);
 		
@@ -96,13 +110,27 @@ public class ModeratorGUI {
 		btnNewButton.setBounds(300, 10, 124, 23);
 		frame.getContentPane().add(btnNewButton);
 		
-		JButton button = new JButton("Add Performance...");
-		button.setBounds(10, 242, 139, 23);
-		frame.getContentPane().add(button);
+		JButton addPerformaceBtn = new JButton("Add Performance...");
+		addPerformaceBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				AddPerformance window = new AddPerformance();
+				window.makeVisible();
+			}
+		});
+		addPerformaceBtn.setBounds(10, 242, 139, 23);
+		frame.getContentPane().add(addPerformaceBtn);
 		
-		JButton button_1 = new JButton("View Performace Comments");
-		button_1.setBounds(158, 242, 188, 23);
-		frame.getContentPane().add(button_1);
+		JButton perfCommentsBtn = new JButton("View Performace Comments...");
+		perfCommentsBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ViewComments window = new ViewComments();
+				window.makeVisible();
+			}
+		});
+		perfCommentsBtn.setBounds(158, 242, 188, 23);
+		frame.getContentPane().add(perfCommentsBtn);
 		
 		JButton btnDeleteAccount = new JButton("Delete Account");
 		btnDeleteAccount.setBounds(308, 340, 116, 23);
@@ -116,5 +144,8 @@ public class ModeratorGUI {
 		textPane.setBounds(10, 90, 414, 137);
 		frame.getContentPane().add(textPane);
 	}
-
+	
+	public void makeVisible() {
+		this.frame.setVisible(true);
+	}
 }

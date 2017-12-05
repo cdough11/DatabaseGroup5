@@ -76,17 +76,38 @@ public class generalUserGUI {
 		});
 		addPerformaceBtn.setBounds(10, 65, 139, 23);
 		frame.getContentPane().add(addPerformaceBtn);
-		JButton btnNewButton_1 = new JButton("View Attended Performaces...");
-		btnNewButton_1.setBounds(144, 65, 214, 23);
-		frame.getContentPane().add(btnNewButton_1);
+		JButton viewAttendedBtn = new JButton("View Attended Performaces...");
+		viewAttendedBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ViewAttendedPerformances window = new ViewAttendedPerformances();
+				window.makeVisible();
+			}
+		});
+		viewAttendedBtn.setBounds(144, 65, 214, 23);
+		frame.getContentPane().add(viewAttendedBtn);
 		
-		JButton btnNewButton_2 = new JButton("View Band Comments");
-		btnNewButton_2.setBounds(10, 99, 180, 23);
-		frame.getContentPane().add(btnNewButton_2);
+		JButton bandCommentsBtn = new JButton("View Band Comments...");
+		bandCommentsBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ViewComments window = new ViewComments();
+				window.makeVisible();
+			}
+		});
+		bandCommentsBtn.setBounds(10, 99, 180, 23);
+		frame.getContentPane().add(bandCommentsBtn);
 		
-		JButton btnNewButton_3 = new JButton("View Performace Comments");
-		btnNewButton_3.setBounds(200, 99, 188, 23);
-		frame.getContentPane().add(btnNewButton_3);
+		JButton performanceCommentsBtn = new JButton("View Performace Comments...");
+		performanceCommentsBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ViewComments window = new ViewComments();
+				window.makeVisible();
+			}
+		});
+		performanceCommentsBtn.setBounds(200, 99, 188, 23);
+		frame.getContentPane().add(performanceCommentsBtn);
 		
 		JButton btnDeleteAccount = new JButton("Delete Account");
 		btnDeleteAccount.setBounds(310, 285, 114, 23);

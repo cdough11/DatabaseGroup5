@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class EditSetlist {
 
@@ -72,8 +74,18 @@ public class EditSetlist {
 		textField_2.setColumns(10);
 		
 		JButton saveBtn = new JButton("Save Changes");
+		saveBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ModeratorGUI window = new ModeratorGUI();
+				window.makeVisible();
+			}
+		});
 		saveBtn.setBounds(162, 227, 110, 23);
 		frame.getContentPane().add(saveBtn);
 	}
-
+	
+	public void makeVisible() {
+		this.frame.setVisible(true);
+	}
 }
