@@ -47,7 +47,7 @@ public class EditSetlist {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblBandName = new JLabel("Band Name");
-		lblBandName.setBounds(10, 11, 63, 14);
+		lblBandName.setBounds(10, 11, 87, 14);
 		frame.getContentPane().add(lblBandName);
 		
 		textField = new JTextField();
@@ -56,7 +56,7 @@ public class EditSetlist {
 		textField.setColumns(10);
 		
 		JLabel lblDateOfPerformace = new JLabel("Date of Performace (MM/DD/YYYY)");
-		lblDateOfPerformace.setBounds(10, 67, 176, 14);
+		lblDateOfPerformace.setBounds(10, 67, 220, 14);
 		frame.getContentPane().add(lblDateOfPerformace);
 		
 		textField_1 = new JTextField();

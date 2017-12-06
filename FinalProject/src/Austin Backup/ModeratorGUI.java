@@ -44,13 +44,13 @@ public class ModeratorGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 550, 413);
+		frame.setBounds(100, 100, 450, 413);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		bandNameTF = new JTextField();
 		bandNameTF.setText("Enter Band");
-		bandNameTF.setBounds(18, 11, 280, 20);
+		bandNameTF.setBounds(10, 11, 280, 20);
 		frame.getContentPane().add(bandNameTF);
 		bandNameTF.setColumns(10);
 		
@@ -62,7 +62,7 @@ public class ModeratorGUI {
 				Band.addBandToDB(bandName);
 			}
 		});
-		addBand.setBounds(10, 51, 89, 23);
+		addBand.setBounds(10, 31, 89, 23);
 		frame.getContentPane().add(addBand);
 		
 		JButton deleteBand = new JButton("Delete Band");
@@ -73,10 +73,10 @@ public class ModeratorGUI {
 				Band.deleteBandFromDB(bandName);
 			}
 		});
-		deleteBand.setBounds(130, 51, 105, 23);
+		deleteBand.setBounds(105, 31, 105, 23);
 		frame.getContentPane().add(deleteBand);
 		
-		JButton editSetlist = new JButton("Edit Setlist");
+		JButton editSetlist = new JButton("Edit Setlist...");
 		editSetlist.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -84,10 +84,10 @@ public class ModeratorGUI {
 				window.makeVisible();
 			}
 		});
-		editSetlist.setBounds(166, 270, 116, 23);
+		editSetlist.setBounds(10, 276, 116, 23);
 		frame.getContentPane().add(editSetlist);
 		
-		JButton manageComments = new JButton("Manage Comments");
+		JButton manageComments = new JButton("Manage Comments...");
 		manageComments.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -95,22 +95,22 @@ public class ModeratorGUI {
 				window.makeVisible();
 			}
 		});
-		manageComments.setBounds(231, 305, 181, 23);
+		manageComments.setBounds(10, 310, 139, 23);
 		frame.getContentPane().add(manageComments);
 		
 		JButton btnAddToFavorites = new JButton("Add to Favorites");
-		btnAddToFavorites.setBounds(10, 86, 139, 23);
+		btnAddToFavorites.setBounds(10, 56, 139, 23);
 		frame.getContentPane().add(btnAddToFavorites);
 		
 		JButton btnDeleteFromFavorites = new JButton("Delete from Favorites");
-		btnDeleteFromFavorites.setBounds(166, 86, 169, 23);
+		btnDeleteFromFavorites.setBounds(158, 56, 139, 23);
 		frame.getContentPane().add(btnDeleteFromFavorites);
 		
 		JButton btnNewButton = new JButton("Show Favorites");
-		btnNewButton.setBounds(368, 86, 124, 23);
+		btnNewButton.setBounds(300, 10, 124, 23);
 		frame.getContentPane().add(btnNewButton);
 		
-		JButton addPerformaceBtn = new JButton("Add Performance");
+		JButton addPerformaceBtn = new JButton("Add Performance...");
 		addPerformaceBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -118,10 +118,10 @@ public class ModeratorGUI {
 				window.makeVisible();
 			}
 		});
-		addPerformaceBtn.setBounds(10, 270, 139, 23);
+		addPerformaceBtn.setBounds(10, 242, 139, 23);
 		frame.getContentPane().add(addPerformaceBtn);
 		
-		JButton perfCommentsBtn = new JButton("View Performace Comments");
+		JButton perfCommentsBtn = new JButton("View Performace Comments...");
 		perfCommentsBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -129,19 +129,19 @@ public class ModeratorGUI {
 				window.makeVisible();
 			}
 		});
-		perfCommentsBtn.setBounds(10, 305, 209, 23);
+		perfCommentsBtn.setBounds(158, 242, 188, 23);
 		frame.getContentPane().add(perfCommentsBtn);
 		
 		JButton btnDeleteAccount = new JButton("Delete Account");
-		btnDeleteAccount.setBounds(10, 339, 139, 23);
+		btnDeleteAccount.setBounds(308, 340, 116, 23);
 		frame.getContentPane().add(btnDeleteAccount);
 		
 		JButton btnShowBands = new JButton("Show Bands");
-		btnShowBands.setBounds(263, 51, 116, 23);
+		btnShowBands.setBounds(220, 31, 116, 23);
 		frame.getContentPane().add(btnShowBands);
 		
 		JTextPane textPane = new JTextPane();
-		textPane.setBounds(18, 121, 414, 137);
+		textPane.setBounds(10, 90, 414, 137);
 		frame.getContentPane().add(textPane);
 	}
 	

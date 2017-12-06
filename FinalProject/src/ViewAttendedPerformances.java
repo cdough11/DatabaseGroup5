@@ -39,25 +39,25 @@ public class ViewAttendedPerformances {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 450, 329);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblPerformacesAttended = new JLabel("Performaces Attended");
-		lblPerformacesAttended.setBounds(10, 11, 116, 14);
+		lblPerformacesAttended.setBounds(10, 11, 156, 14);
 		frame.getContentPane().add(lblPerformacesAttended);
 		
 		JLabel lblPerormcaneId = new JLabel("Performance ID:");
-		lblPerormcaneId.setBounds(10, 108, 84, 14);
+		lblPerormcaneId.setBounds(10, 108, 118, 14);
 		frame.getContentPane().add(lblPerormcaneId);
 		
 		textField = new JTextField();
-		textField.setBounds(104, 105, 86, 20);
+		textField.setBounds(122, 105, 86, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblComments = new JLabel("Comments");
-		lblComments.setBounds(10, 133, 62, 14);
+		lblComments.setBounds(10, 156, 94, 14);
 		frame.getContentPane().add(lblComments);
 		
 		JTextPane textPane = new JTextPane();
@@ -65,7 +65,7 @@ public class ViewAttendedPerformances {
 		frame.getContentPane().add(textPane);
 		
 		JTextPane textPane_1 = new JTextPane();
-		textPane_1.setBounds(10, 158, 414, 92);
+		textPane_1.setBounds(10, 182, 414, 92);
 		frame.getContentPane().add(textPane_1);
 	}
 	

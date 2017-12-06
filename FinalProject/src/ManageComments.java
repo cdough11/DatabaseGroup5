@@ -57,7 +57,7 @@ public class ManageComments {
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Date of Performace (MM/DD/YYYY)");
-		lblNewLabel.setBounds(10, 67, 173, 14);
+		lblNewLabel.setBounds(10, 67, 229, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
 		textField_1 = new JTextField();
@@ -70,11 +70,11 @@ public class ManageComments {
 		frame.getContentPane().add(panel);
 		
 		JLabel lblDeleteCommentFrom = new JLabel("Delete Comment from User");
-		lblDeleteCommentFrom.setBounds(10, 231, 137, 14);
+		lblDeleteCommentFrom.setBounds(10, 231, 184, 14);
 		frame.getContentPane().add(lblDeleteCommentFrom);
 		
 		userId = new JTextField();
-		userId.setBounds(157, 228, 110, 20);
+		userId.setBounds(186, 232, 110, 20);
 		frame.getContentPane().add(userId);
 		userId.setColumns(10);
 		
@@ -86,7 +86,7 @@ public class ManageComments {
 				window.makeVisible();
 			}
 		});
-		submitBtn.setBounds(335, 231, 89, 23);
+		submitBtn.setBounds(335, 232, 89, 23);
 		frame.getContentPane().add(submitBtn);
 	}
 	

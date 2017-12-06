@@ -48,29 +48,29 @@ public class GeneralUserGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 358);
+		frame.setBounds(100, 100, 549, 386);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		editBandName = new JTextField();
 		editBandName.setText("Enter Band Name");
-		editBandName.setBounds(10, 11, 263, 20);
+		editBandName.setBounds(146, 16, 263, 20);
 		frame.getContentPane().add(editBandName);
 		editBandName.setColumns(10);
 		
 		JButton newFav = new JButton("Add To Favorites");
-		newFav.setBounds(10, 31, 123, 23);
+		newFav.setBounds(26, 54, 139, 23);
 		frame.getContentPane().add(newFav);
 		
 		JButton deleteFav = new JButton("Delete From Favorites");
-		deleteFav.setBounds(134, 31, 139, 23);
+		deleteFav.setBounds(350, 54, 172, 23);
 		frame.getContentPane().add(deleteFav);
 		
 		JButton showFavs = new JButton("Show Favorite Bands");
-		showFavs.setBounds(283, 10, 141, 23);
+		showFavs.setBounds(48, 89, 172, 23);
 		frame.getContentPane().add(showFavs);
 		
-		JButton addPerformaceBtn = new JButton("Add Performance...");
+		JButton addPerformaceBtn = new JButton("Add Performance");
 		addPerformaceBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -78,9 +78,9 @@ public class GeneralUserGUI {
 				window.makeVisible();
 			}
 		});
-		addPerformaceBtn.setBounds(10, 65, 139, 23);
+		addPerformaceBtn.setBounds(187, 54, 139, 23);
 		frame.getContentPane().add(addPerformaceBtn);
-		JButton viewAttendedBtn = new JButton("View Attended Performaces...");
+		JButton viewAttendedBtn = new JButton("View Attended Performaces");
 		viewAttendedBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -88,10 +88,14 @@ public class GeneralUserGUI {
 				window.makeVisible();
 			}
 		});
-		viewAttendedBtn.setBounds(144, 65, 214, 23);
+		viewAttendedBtn.setBounds(268, 89, 214, 23);
 		frame.getContentPane().add(viewAttendedBtn);
 		
-		JButton bandCommentsBtn = new JButton("View Band Comments...");
+		JButton bandCommentsBtn = new JButton("View Band Comments");
+		bandCommentsBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		bandCommentsBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -99,10 +103,10 @@ public class GeneralUserGUI {
 				window.makeVisible();
 			}
 		});
-		bandCommentsBtn.setBounds(10, 99, 180, 23);
+		bandCommentsBtn.setBounds(48, 124, 180, 23);
 		frame.getContentPane().add(bandCommentsBtn);
 		
-		JButton performanceCommentsBtn = new JButton("View Performace Comments...");
+		JButton performanceCommentsBtn = new JButton("View Performace Comments");
 		performanceCommentsBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -110,15 +114,15 @@ public class GeneralUserGUI {
 				window.makeVisible();
 			}
 		});
-		performanceCommentsBtn.setBounds(200, 99, 188, 23);
+		performanceCommentsBtn.setBounds(261, 124, 240, 23);
 		frame.getContentPane().add(performanceCommentsBtn);
 		
 		JButton btnDeleteAccount = new JButton("Delete Account");
-		btnDeleteAccount.setBounds(310, 285, 114, 23);
+		btnDeleteAccount.setBounds(350, 320, 172, 23);
 		frame.getContentPane().add(btnDeleteAccount);
 		
 		JTextPane textPane = new JTextPane();
-		textPane.setBounds(10, 133, 414, 144);
+		textPane.setBounds(68, 164, 414, 144);
 		frame.getContentPane().add(textPane);
 	}
 }

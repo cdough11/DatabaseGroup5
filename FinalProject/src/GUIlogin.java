@@ -45,25 +45,25 @@ public class GUIlogin {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 450, 282);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblUsername = new JLabel("Email:");
-		lblUsername.setBounds(181, 14, 59, 14);
+		lblUsername.setBounds(198, 31, 59, 14);
 		frame.getContentPane().add(lblUsername);
 		
 		username = new JTextField();
-		username.setBounds(149, 39, 120, 20);
+		username.setBounds(108, 57, 221, 20);
 		frame.getContentPane().add(username);
 		username.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(181, 70, 46, 14);
+		lblPassword.setBounds(187, 89, 88, 14);
 		frame.getContentPane().add(lblPassword);
 		
 		password = new JTextField();
-		password.setBounds(149, 95, 120, 20);
+		password.setBounds(108, 115, 221, 20);
 		frame.getContentPane().add(password);
 		password.setColumns(10);
 		
@@ -85,7 +85,7 @@ public class GUIlogin {
 					
 			}
 		});
-		loginBtn.setBounds(168, 143, 89, 23);
+		loginBtn.setBounds(168, 171, 89, 23);
 		frame.getContentPane().add(loginBtn);
 	}
 }

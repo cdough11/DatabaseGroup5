@@ -1,11 +1,13 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class AddPerformance {
+public class EditSetlist {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -19,7 +21,7 @@ public class AddPerformance {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddPerformance window = new AddPerformance();
+					EditSetlist window = new EditSetlist();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,7 +33,7 @@ public class AddPerformance {
 	/**
 	 * Create the application.
 	 */
-	public AddPerformance() {
+	public EditSetlist() {
 		initialize();
 	}
 
@@ -44,38 +46,45 @@ public class AddPerformance {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		JLabel lblBandName = new JLabel("Band Name");
+		lblBandName.setBounds(10, 11, 63, 14);
+		frame.getContentPane().add(lblBandName);
+		
 		textField = new JTextField();
-		textField.setBounds(10, 29, 374, 20);
+		textField.setBounds(10, 36, 367, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNameOfBand = new JLabel("Name of Band");
-		lblNameOfBand.setBounds(10, 11, 109, 14);
-		frame.getContentPane().add(lblNameOfBand);
-		
-		JLabel lblNewLabel = new JLabel("Date Attended (MM/DD/YYYY)");
-		lblNewLabel.setBounds(10, 60, 190, 14);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel lblDateOfPerformace = new JLabel("Date of Performace (MM/DD/YYYY)");
+		lblDateOfPerformace.setBounds(10, 67, 176, 14);
+		frame.getContentPane().add(lblDateOfPerformace);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(10, 82, 150, 20);
+		textField_1.setBounds(10, 92, 142, 20);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblComments = new JLabel("Comments");
-		lblComments.setBounds(10, 113, 109, 14);
-		frame.getContentPane().add(lblComments);
+		JLabel lblSetlist = new JLabel("Setlist");
+		lblSetlist.setBounds(10, 123, 46, 14);
+		frame.getContentPane().add(lblSetlist);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(10, 138, 414, 71);
+		textField_2.setBounds(10, 148, 414, 68);
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
-		JButton addBtn = new JButton("Add");
-		addBtn.setBounds(10, 216, 89, 23);
-		frame.getContentPane().add(addBtn);
+		JButton saveBtn = new JButton("Save Changes");
+		saveBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ModeratorGUI window = new ModeratorGUI();
+				window.makeVisible();
+			}
+		});
+		saveBtn.setBounds(162, 227, 110, 23);
+		frame.getContentPane().add(saveBtn);
 	}
-
+	
 	public void makeVisible() {
 		this.frame.setVisible(true);
 	}

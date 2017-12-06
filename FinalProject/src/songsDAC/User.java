@@ -9,7 +9,7 @@ public class User {
 	public String fName, lName, userID, emailAddress;
 	public int age;
 	public boolean isModerator;
-	List<Song> favoriteSongs;
+	List<Band> favoriteBands;
 	public static boolean currentUserIsModerator;
 	
 	public User(String userID) {
@@ -17,7 +17,7 @@ public class User {
 	}
 	
 	public void getInfoFromDB(String userIDString) {
-		String query = "SELECT * FROM Users WHERE userID = '" + userIDString + "';";
+		String query = "SELECT * FROM Users WHERE user_id = '" + userIDString + "';";
 		try {
 			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
 			Statement statement = conn.createStatement();
@@ -25,7 +25,7 @@ public class User {
 			if(results.next()) {
 				fName = results.getString("fName");
 				lName = results.getString("lName");
-				userID = results.getString("userID");
+				userID = results.getString("user_id");
 				emailAddress = results.getString("Email");
 				age = results.getInt("Age");
 				isModerator = results.getInt("is_Moderator") == 1;
@@ -33,10 +33,10 @@ public class User {
 				String favoriteSongsQuery = "SELECT * FROM FavoriteSongs WHERE user_id = '" + userID + "';";
 				Statement favoriteSongsStatement = conn.createStatement();
 				ResultSet favoriteSongsResults = favoriteSongsStatement.executeQuery(favoriteSongsQuery);
-				favoriteSongs = new ArrayList<Song>();
+				favoriteBands = new ArrayList<Band>();
 				while(favoriteSongsResults.next()) {
-					String songID = favoriteSongsResults.getString("song_id");
-					favoriteSongs.add(new Song(songID));
+					String band = favoriteSongsResults.getString("band_id");
+					favoriteBands.add(new Band(band));
 				}		
 			}
 			else {

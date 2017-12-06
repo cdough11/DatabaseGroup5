@@ -54,7 +54,7 @@ public class AddPerformance {
 		frame.getContentPane().add(lblNameOfBand);
 		
 		JLabel lblNewLabel = new JLabel("Date Attended (MM/DD/YYYY)");
-		lblNewLabel.setBounds(10, 60, 150, 14);
+		lblNewLabel.setBounds(10, 60, 190, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
 		textField_1 = new JTextField();
