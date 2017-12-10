@@ -110,4 +110,18 @@ public class Performance {
 			setList = new ArrayList<Song>();
 		}
 	}
+	
+	public static void addPerformanceToDB(String duration, Date date, String venue, String bandID) {
+		try {
+			String query = "INSERT INTO Performances (duration, date, venue, band_id) VALUES ('" + duration + "', '" + date + "', " +
+					venue + ", '" + bandID + "');";
+			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+			Statement statement;
+			statement = conn.createStatement();
+			statement.execute(query);
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

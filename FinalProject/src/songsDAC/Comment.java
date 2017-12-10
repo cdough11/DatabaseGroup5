@@ -76,4 +76,32 @@ public class Comment {
 			date = null;
 		}
 	}
+	
+	public static void deleteFromDB(String commentID) {
+		String query = "DELETE FROM Comments WHERE comment_id = '" + commentID + "';";
+		try {
+			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+			Statement statement;
+			statement = conn.createStatement();
+			statement.execute(query);
+			conn.close();
+		}
+			catch(SQLException e) {
+				e.printStackTrace();
+		}
+	}
+	
+	public static void addCommentToDB(Date date, String userID, String performanceID, String contents) {
+		try {
+			String query = "INSERT INTO Comments (date, user_id, performance_id, contents) VALUES ('" + date + "', '" + userID + "', " +
+					performanceID + ", '" + contents + "');";
+			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+			Statement statement;
+			statement = conn.createStatement();
+			statement.execute(query);
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
