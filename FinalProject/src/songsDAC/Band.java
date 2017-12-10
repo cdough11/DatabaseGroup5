@@ -118,9 +118,9 @@ public class Band {
 			bandID = id;
 		}
 	}
-	public static void addBandToDB(String bandName) {
+	public static void addBandToDB(String bandName, String formationDate, String breakupDate) {
 		try {
-			String query = "INSERT INTO Bands (band_fname, band_lname, formation_date, breakup_date) VALUES ('" + bandName + "', null, null);";
+			String query = "INSERT INTO Bands (band_name, formation_date, breakup_date) VALUES ('" + bandName + "', '" + formationDate + "', '" + breakupDate + "');";
 			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
 			Statement statement;
 			statement = conn.createStatement();

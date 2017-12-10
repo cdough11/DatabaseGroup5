@@ -15,7 +15,6 @@ public class User {
 	public User(String userID) {
 		getInfoFromDB(userID);
 	}
-<<<<<<< HEAD
 	
 	public User(String username, String password) {
 		String query = "SELECT * FROM Users WHERE Email = '" + username + "' and password = '" + password + "';";
@@ -59,8 +58,6 @@ public class User {
 		}
 	}
 	
-=======
->>>>>>> 28cafad9d644387c0b2048031dd54b8c99398505
 	public void getInfoFromDB(String userIDString) {
 		String query = "SELECT * FROM Users WHERE user_id = '" + userIDString + "';";
 		try {

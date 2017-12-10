@@ -15,6 +15,8 @@ public class ModeratorGUI {
 
 	private JFrame frame;
 	private JTextField bandNameTF;
+	private JTextField txtEnterFormationDate;
+	private JTextField txtEnterBreakupDate;
 
 	/**
 	 * Launch the application.
@@ -50,7 +52,7 @@ public class ModeratorGUI {
 		
 		bandNameTF = new JTextField();
 		bandNameTF.setText("Enter Band");
-		bandNameTF.setBounds(18, 11, 280, 20);
+		bandNameTF.setBounds(18, 11, 131, 20);
 		frame.getContentPane().add(bandNameTF);
 		bandNameTF.setColumns(10);
 		
@@ -174,6 +176,18 @@ public class ModeratorGUI {
 		JTextPane textPane = new JTextPane();
 		textPane.setBounds(18, 121, 414, 137);
 		frame.getContentPane().add(textPane);
+		
+		txtEnterFormationDate = new JTextField();
+		txtEnterFormationDate.setText("Enter Formation Date");
+		txtEnterFormationDate.setBounds(159, 11, 123, 20);
+		frame.getContentPane().add(txtEnterFormationDate);
+		txtEnterFormationDate.setColumns(10);
+		
+		txtEnterBreakupDate = new JTextField();
+		txtEnterBreakupDate.setText("Enter Breakup Date");
+		txtEnterBreakupDate.setBounds(292, 11, 120, 20);
+		frame.getContentPane().add(txtEnterBreakupDate);
+		txtEnterBreakupDate.setColumns(10);
 	}
 	
 	public void makeVisible() {
