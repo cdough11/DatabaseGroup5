@@ -15,7 +15,6 @@ public class User {
 	public User(String userID) {
 		getInfoFromDB(userID);
 	}
-	
 	public void getInfoFromDB(String userIDString) {
 		String query = "SELECT * FROM Users WHERE user_id = '" + userIDString + "';";
 		try {
@@ -77,5 +76,34 @@ public class User {
 		}
 		currentUserIsModerator = false;
 		return false;
+	}
+	
+	public static void deleteFromDB(String userID) {
+		String query = "DELETE FROM Users WHERE user_id = '" + userID + "';";
+		try {
+			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+			Statement statement;
+			statement = conn.createStatement();
+			statement.execute(query);
+			conn.close();
+		}
+			catch(SQLException e) {
+				e.printStackTrace();
+		}
+	}
+	
+	public static void addUserToDB(String firstName, String lastName, int age, String email, boolean isModerator, String password) {
+		try {
+			int isMod = isModerator ? 1:0;
+			String query = "INSERT INTO Users (fName, lName, Age, Email, is_Moderator, password) VALUES ('" + firstName + "', '" + lastName + "', " +
+					age + ", '" + email + ", '" + isMod + ", '" + password + "');";
+			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+			Statement statement;
+			statement = conn.createStatement();
+			statement.execute(query);
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
