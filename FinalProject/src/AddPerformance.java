@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AddPerformance {
 
@@ -72,6 +74,12 @@ public class AddPerformance {
 		textField_2.setColumns(10);
 		
 		JButton addBtn = new JButton("Add");
+		addBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) { 
+				
+			}
+		});
 		addBtn.setBounds(10, 216, 89, 23);
 		frame.getContentPane().add(addBtn);
 	}

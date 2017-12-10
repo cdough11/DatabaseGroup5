@@ -16,6 +16,8 @@ public class GUIlogin {
 	private JFrame frame;
 	private JTextField username;
 	private JTextField password;
+	public static User loggedInUser;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -73,6 +75,7 @@ public class GUIlogin {
 			public void mouseClicked(MouseEvent arg0) {
 				boolean valid = User.login(username.getText(), password.getText());
 				if(valid) {
+					loggedInUser = new User(username.getText(), password.getText());
 					if(User.currentUserIsModerator) {
 						ModeratorGUI window = new ModeratorGUI();
 						window.makeVisible();
@@ -87,5 +90,20 @@ public class GUIlogin {
 		});
 		loginBtn.setBounds(168, 171, 89, 23);
 		frame.getContentPane().add(loginBtn);
+		
+		btnNewButton = new JButton("Register New User");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				RegisterUser window = new RegisterUser();
+				window.makeVisible();
+			}
+		});
+		btnNewButton.setBounds(154, 194, 121, 23);
+		frame.getContentPane().add(btnNewButton);
+	}
+	
+	public void makeVisible() {
+		this.frame.setVisible(true);
 	}
 }

@@ -118,6 +118,13 @@ public class GeneralUserGUI {
 		frame.getContentPane().add(performanceCommentsBtn);
 		
 		JButton btnDeleteAccount = new JButton("Delete Account");
+		btnDeleteAccount.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GUIlogin window = new GUIlogin();
+				window.makeVisible();
+			}
+		});
 		btnDeleteAccount.setBounds(350, 320, 172, 23);
 		frame.getContentPane().add(btnDeleteAccount);
 		

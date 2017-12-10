@@ -99,16 +99,34 @@ public class ModeratorGUI {
 		frame.getContentPane().add(manageComments);
 		
 		JButton btnAddToFavorites = new JButton("Add to Favorites");
+		btnAddToFavorites.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 		btnAddToFavorites.setBounds(10, 86, 139, 23);
 		frame.getContentPane().add(btnAddToFavorites);
 		
 		JButton btnDeleteFromFavorites = new JButton("Delete from Favorites");
+		btnDeleteFromFavorites.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 		btnDeleteFromFavorites.setBounds(166, 86, 169, 23);
 		frame.getContentPane().add(btnDeleteFromFavorites);
 		
-		JButton btnNewButton = new JButton("Show Favorites");
-		btnNewButton.setBounds(368, 86, 124, 23);
-		frame.getContentPane().add(btnNewButton);
+		JButton showFavorites = new JButton("Show Favorites");
+		showFavorites.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		showFavorites.setBounds(368, 86, 124, 23);
+		frame.getContentPane().add(showFavorites);
 		
 		JButton addPerformaceBtn = new JButton("Add Performance");
 		addPerformaceBtn.addMouseListener(new MouseAdapter() {
@@ -133,10 +151,23 @@ public class ModeratorGUI {
 		frame.getContentPane().add(perfCommentsBtn);
 		
 		JButton btnDeleteAccount = new JButton("Delete Account");
+		btnDeleteAccount.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				GUIlogin window = new GUIlogin();
+				window.makeVisible();
+			}
+		});
 		btnDeleteAccount.setBounds(10, 339, 139, 23);
 		frame.getContentPane().add(btnDeleteAccount);
 		
 		JButton btnShowBands = new JButton("Show Bands");
+		btnShowBands.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 		btnShowBands.setBounds(263, 51, 116, 23);
 		frame.getContentPane().add(btnShowBands);
 		

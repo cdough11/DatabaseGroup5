@@ -16,6 +16,48 @@ public class User {
 		getInfoFromDB(userID);
 	}
 	
+	public User(String username, String password) {
+		String query = "SELECT * FROM Users WHERE Email = '" + username + "' and password = '" + password + "';";
+		try {
+			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+			Statement statement = conn.createStatement();
+			ResultSet results = statement.executeQuery(query);
+			if(results.next()) {
+				fName = results.getString("fName");
+				lName = results.getString("lName");
+				userID = results.getString("user_id");
+				emailAddress = results.getString("Email");
+				age = results.getInt("Age");
+				isModerator = results.getInt("is_Moderator") == 1;
+				
+				String favoriteSongsQuery = "SELECT * FROM FavoriteSongs WHERE user_id = '" + userID + "';";
+				Statement favoriteSongsStatement = conn.createStatement();
+				ResultSet favoriteSongsResults = favoriteSongsStatement.executeQuery(favoriteSongsQuery);
+				favoriteBands = new ArrayList<Band>();
+				while(favoriteSongsResults.next()) {
+					String band = favoriteSongsResults.getString("band_id");
+					favoriteBands.add(new Band(band));
+				}		
+			}
+			else {
+				fName = "";
+				lName = "";
+				userID = "";
+				emailAddress = "";
+				age = 0;
+				isModerator = false;
+			}
+		}
+		catch(SQLException e) {
+			fName = "";
+			lName = "";
+			userID = "";
+			emailAddress = "";
+			age = 0;
+			isModerator = false;
+		}
+	}
+	
 	public void getInfoFromDB(String userIDString) {
 		String query = "SELECT * FROM Users WHERE user_id = '" + userIDString + "';";
 		try {

@@ -5,6 +5,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ViewAttendedPerformances {
 
@@ -67,6 +70,16 @@ public class ViewAttendedPerformances {
 		JTextPane textPane_1 = new JTextPane();
 		textPane_1.setBounds(10, 182, 414, 92);
 		frame.getContentPane().add(textPane_1);
+		
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		btnSubmit.setBounds(218, 104, 89, 23);
+		frame.getContentPane().add(btnSubmit);
 	}
 	
 	public void makeVisible() {
