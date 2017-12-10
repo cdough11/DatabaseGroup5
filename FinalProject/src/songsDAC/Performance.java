@@ -12,11 +12,11 @@ import songsDAC.Band.Member;
 
 public class Performance {
 
-	List<Song> setList;
+	public List<Song> setList;
 	String duration;
 	Date date;
 	String venue;
-	String id;
+	public String id;
 	Band band;
 	
 	public Performance(String performanceID) {
@@ -115,6 +115,33 @@ public class Performance {
 		try {
 			String query = "INSERT INTO Performances (duration, date, venue, band_id) VALUES ('" + duration + "', '" + date + "', " +
 					venue + ", '" + bandID + "');";
+			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+			Statement statement;
+			statement = conn.createStatement();
+			statement.execute(query);
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void addSongToSetList(String songID, String performanceID) {
+		try {
+			String query = "INSERT INTO SetLists (song_id, performance_id) VALUES ('" + songID + "', '" + performanceID + "');";
+			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+			Statement statement;
+			statement = conn.createStatement();
+			statement.execute(query);
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static void deleteSongFromSetList(String songID, String performanceID) {
+		try {
+			String query = "DELETE FROM SetLists WHERE song_id = '" + songID + "' AND performance_id = '" + performanceID + "');";
 			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
 			Statement statement;
 			statement = conn.createStatement();

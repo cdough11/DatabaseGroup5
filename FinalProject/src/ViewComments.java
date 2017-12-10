@@ -1,9 +1,12 @@
 import java.awt.EventQueue;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+
+import songsDAC.Comment;
 
 public class ViewComments {
 
@@ -48,6 +51,13 @@ public class ViewComments {
 		JTextPane textPane = new JTextPane();
 		textPane.setBounds(10, 36, 414, 214);
 		frame.getContentPane().add(textPane);
+		
+		List<Comment> comments = Comment.getAllComments();
+		String commentsString = "";
+		for(Comment comment: comments) {
+			commentsString += "Performance ID: " + comment.performance.id + ", User ID: " + comment.user.userID + "\nContents: " + comment.content + "\n\n";
+		}
+		textPane.setText(commentsString);
 	}
 	
 	public void makeVisible() {

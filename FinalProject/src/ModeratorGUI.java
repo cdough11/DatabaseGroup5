@@ -4,11 +4,14 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import songsDAC.Band;
+import songsDAC.User;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
+
 import javax.swing.JTextPane;
 
 public class ModeratorGUI {
@@ -56,12 +59,18 @@ public class ModeratorGUI {
 		frame.getContentPane().add(bandNameTF);
 		bandNameTF.setColumns(10);
 		
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(18, 121, 414, 137);
+		frame.getContentPane().add(textPane);
+		
 		JButton addBand = new JButton("Add Band");
 		addBand.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String bandName = bandNameTF.getText();
-				Band.addBandToDB(bandName);
+				String formationDate = txtEnterFormationDate.getText();
+				String breakupDate = txtEnterBreakupDate.getText();
+				Band.addBandToDB(bandName, formationDate, breakupDate);
 			}
 		});
 		addBand.setBounds(10, 51, 89, 23);
@@ -104,7 +113,8 @@ public class ModeratorGUI {
 		btnAddToFavorites.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				Band band = new Band(bandNameTF.getText());
+				GUIlogin.loggedInUser.addNewFavoriteBand(band);
 			}
 		});
 		btnAddToFavorites.setBounds(10, 86, 139, 23);
@@ -114,7 +124,8 @@ public class ModeratorGUI {
 		btnDeleteFromFavorites.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				Band band = new Band(bandNameTF.getText());
+				GUIlogin.loggedInUser.deleteFavoriteBand(band);
 			}
 		});
 		btnDeleteFromFavorites.setBounds(166, 86, 169, 23);
@@ -124,7 +135,12 @@ public class ModeratorGUI {
 		showFavorites.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				List<Band> favoriteBands = GUIlogin.loggedInUser.favoriteBands;
+				String favBandNames = "";
+				for(Band band: favoriteBands) {
+					favBandNames += band.name + "\n";
+				}
+				textPane.setText(favBandNames);
 			}
 		});
 		showFavorites.setBounds(368, 86, 124, 23);
@@ -156,26 +172,13 @@ public class ModeratorGUI {
 		btnDeleteAccount.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				User.deleteFromDB(GUIlogin.loggedInUser.userID);
 				GUIlogin window = new GUIlogin();
 				window.makeVisible();
 			}
 		});
 		btnDeleteAccount.setBounds(10, 339, 139, 23);
 		frame.getContentPane().add(btnDeleteAccount);
-		
-		JButton btnShowBands = new JButton("Show Bands");
-		btnShowBands.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});
-		btnShowBands.setBounds(263, 51, 116, 23);
-		frame.getContentPane().add(btnShowBands);
-		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(18, 121, 414, 137);
-		frame.getContentPane().add(textPane);
 		
 		txtEnterFormationDate = new JTextField();
 		txtEnterFormationDate.setText("Enter Formation Date");

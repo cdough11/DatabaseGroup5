@@ -3,16 +3,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import songsDAC.Performance;
+import songsDAC.Song;
+
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class EditSetlist {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField performanceIDField;
+	private JTextField songIDField;
+	private JTextField setListValues;
 	private JButton btnAddToSetlist;
 	private JButton btnDeleteFromSetlist;
 	private JButton btnViewSetlist;
@@ -50,27 +55,27 @@ public class EditSetlist {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblBandName = new JLabel("performance_id");
-		lblBandName.setBounds(10, 11, 87, 14);
+		lblBandName.setBounds(10, 11, 101, 14);
 		frame.getContentPane().add(lblBandName);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 36, 142, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		performanceIDField = new JTextField();
+		performanceIDField.setBounds(10, 36, 142, 20);
+		frame.getContentPane().add(performanceIDField);
+		performanceIDField.setColumns(10);
 		
-		JLabel lblDateOfPerformace = new JLabel("song_id");
-		lblDateOfPerformace.setBounds(10, 67, 51, 14);
-		frame.getContentPane().add(lblDateOfPerformace);
+		JLabel songIDLabel = new JLabel("song_id");
+		songIDLabel.setBounds(10, 67, 51, 14);
+		frame.getContentPane().add(songIDLabel);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(10, 92, 142, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		songIDField = new JTextField();
+		songIDField.setBounds(10, 92, 142, 20);
+		frame.getContentPane().add(songIDField);
+		songIDField.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(10, 130, 414, 86);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		setListValues = new JTextField();
+		setListValues.setBounds(10, 130, 414, 86);
+		frame.getContentPane().add(setListValues);
+		setListValues.setColumns(10);
 		
 		JButton saveBtn = new JButton("Save Changes");
 		saveBtn.addMouseListener(new MouseAdapter() {
@@ -84,15 +89,60 @@ public class EditSetlist {
 		frame.getContentPane().add(saveBtn);
 		
 		btnAddToSetlist = new JButton("Add To Setlist");
-		btnAddToSetlist.setBounds(269, 33, 110, 23);
+		btnAddToSetlist.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String songID  = songIDField.getText();
+				String performanceID = performanceIDField.getText();
+				Performance performance = new Performance(performanceID);
+				List<Song> setList = performance.setList;
+				boolean alreadyIn = false;
+				for(Song song: setList)
+					if(song.id.equals(songID))
+						alreadyIn = true;
+				if(!alreadyIn) {
+					Performance.addSongToSetList(songID, performanceID);
+				}
+			}
+		});
+		btnAddToSetlist.setBounds(269, 33, 155, 23);
 		frame.getContentPane().add(btnAddToSetlist);
 		
 		btnDeleteFromSetlist = new JButton("Delete From Setlist");
-		btnDeleteFromSetlist.setBounds(269, 63, 123, 23);
+		btnDeleteFromSetlist.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String songID  = songIDField.getText();
+				String performanceID = performanceIDField.getText();
+				Performance performance = new Performance(performanceID);
+				List<Song> setList = performance.setList;
+				boolean exists = false;
+				for(Song song: setList)
+					if(song.id.equals(songID))
+						exists = true;
+				if(exists) {
+					Performance.deleteSongFromSetList(songID, performanceID);
+				}
+			}
+		});
+		btnDeleteFromSetlist.setBounds(269, 63, 155, 23);
 		frame.getContentPane().add(btnDeleteFromSetlist);
 		
 		btnViewSetlist = new JButton("View Setlist");
-		btnViewSetlist.setBounds(269, 91, 89, 23);
+		btnViewSetlist.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String songID  = songIDField.getText();
+				String performanceID = performanceIDField.getText();
+				Performance performance = new Performance(performanceID);
+				List<Song> setList = performance.setList;
+				String setListString = "";
+				for(Song song: setList)
+					setListString += song.title + "\n";
+				setListValues.setText(setListString);
+			}
+		});
+		btnViewSetlist.setBounds(269, 91, 155, 23);
 		frame.getContentPane().add(btnViewSetlist);
 	}
 	

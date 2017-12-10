@@ -9,7 +9,7 @@ public class User {
 	public String fName, lName, userID, emailAddress;
 	public int age;
 	public boolean isModerator;
-	List<Band> favoriteBands;
+	public List<Band> favoriteBands;
 	public static boolean currentUserIsModerator;
 	
 	public User(String userID) {
@@ -72,12 +72,12 @@ public class User {
 				age = results.getInt("Age");
 				isModerator = results.getInt("is_Moderator") == 1;
 				
-				String favoriteSongsQuery = "SELECT * FROM FavoriteSongs WHERE user_id = '" + userID + "';";
-				Statement favoriteSongsStatement = conn.createStatement();
-				ResultSet favoriteSongsResults = favoriteSongsStatement.executeQuery(favoriteSongsQuery);
+				String favoriteBandsQuery = "SELECT * FROM FavoriteBands WHERE user_id = '" + userID + "';";
+				Statement favoriteBandsStatement = conn.createStatement();
+				ResultSet favoriteBandsResults = favoriteBandsStatement.executeQuery(favoriteBandsQuery);
 				favoriteBands = new ArrayList<Band>();
-				while(favoriteSongsResults.next()) {
-					String band = favoriteSongsResults.getString("band_id");
+				while(favoriteBandsResults.next()) {
+					String band = favoriteBandsResults.getString("band_id");
 					favoriteBands.add(new Band(band));
 				}		
 			}
@@ -147,6 +147,54 @@ public class User {
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void addNewFavoriteBand(Band band) {
+		boolean containsBand = false;
+		for(Band existingBand: this.favoriteBands)
+			if(existingBand.id.equals(band.id))
+				containsBand = true;
+		if(!containsBand) {
+			this.favoriteBands.add(band);
+			String query = "INSERT INTO FavoriteBands (band_id, user_id) VALUES ('" + band.id + "', '" + this.userID + "');";	
+			try {
+				SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+				Statement statement;
+				statement = conn.createStatement();
+				statement.execute(query);
+				conn.close();
+			}
+				catch(SQLException e) {
+					e.printStackTrace();
+			}
+		}
+	}
+
+	public void deleteFavoriteBand(Band band) {
+		boolean containsBand = false;
+		int index = 0;
+		int i = 0;
+		for(Band existingBand: this.favoriteBands) {
+			if(existingBand.id.equals(band.id)) {
+				containsBand = true;
+				index = i;
+			}
+			i++;
+		}
+		if(containsBand) {
+			this.favoriteBands.remove(index);
+			String query = "DELETE FROM FavoriteBands WHERE band_id = '" + band.id + "' AND user_id = '" + this.userID + "');";	
+			try {
+				SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+				Statement statement;
+				statement = conn.createStatement();
+				statement.execute(query);
+				conn.close();
+			}
+				catch(SQLException e) {
+					e.printStackTrace();
+			}
 		}
 	}
 }
