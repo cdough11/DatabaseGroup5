@@ -114,7 +114,7 @@ public class GeneralUserGUI {
 				window.makeVisible();
 			}
 		});
-		performanceCommentsBtn.setBounds(261, 124, 240, 23);
+		performanceCommentsBtn.setBounds(268, 123, 240, 23);
 		frame.getContentPane().add(performanceCommentsBtn);
 		
 		JButton btnDeleteAccount = new JButton("Delete Account");

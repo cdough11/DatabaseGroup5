@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTextPane;
 
 public class ManageComments {
 
@@ -14,6 +15,7 @@ public class ManageComments {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField userId;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -43,7 +45,7 @@ public class ManageComments {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 451, 341);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -65,16 +67,12 @@ public class ManageComments {
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 123, 414, 97);
-		frame.getContentPane().add(panel);
-		
 		JLabel lblDeleteCommentFrom = new JLabel("Delete Comment from User");
 		lblDeleteCommentFrom.setBounds(10, 231, 184, 14);
 		frame.getContentPane().add(lblDeleteCommentFrom);
 		
 		userId = new JTextField();
-		userId.setBounds(186, 232, 110, 20);
+		userId.setBounds(148, 228, 110, 20);
 		frame.getContentPane().add(userId);
 		userId.setColumns(10);
 		
@@ -86,8 +84,21 @@ public class ManageComments {
 				window.makeVisible();
 			}
 		});
-		submitBtn.setBounds(335, 232, 89, 23);
+		submitBtn.setBounds(335, 268, 89, 23);
 		frame.getContentPane().add(submitBtn);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(10, 123, 414, 94);
+		frame.getContentPane().add(textPane);
+		
+		JLabel lblCommentId = new JLabel("Comment ID");
+		lblCommentId.setBounds(10, 256, 73, 14);
+		frame.getContentPane().add(lblCommentId);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(108, 253, 86, 20);
+		frame.getContentPane().add(textField_2);
+		textField_2.setColumns(10);
 	}
 	
 	public void makeVisible() {
