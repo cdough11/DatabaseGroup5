@@ -30,14 +30,14 @@ public class User {
 				age = results.getInt("Age");
 				isModerator = results.getInt("is_Moderator") == 1;
 				
-				String favoriteSongsQuery = "SELECT * FROM FavoriteSongs WHERE user_id = '" + userID + "';";
+				String favoriteSongsQuery = "SELECT * FROM FavoriteBands WHERE user_id = '" + userID + "';";
 				Statement favoriteSongsStatement = conn.createStatement();
 				ResultSet favoriteSongsResults = favoriteSongsStatement.executeQuery(favoriteSongsQuery);
 				favoriteBands = new ArrayList<Band>();
 				while(favoriteSongsResults.next()) {
-					String band = favoriteSongsResults.getString("band_id");
+					int band = Integer.parseInt(favoriteSongsResults.getString("band_id"));
 					favoriteBands.add(new Band(band));
-				}		
+				}	
 			}
 			else {
 				fName = "";
@@ -47,8 +47,10 @@ public class User {
 				age = 0;
 				isModerator = false;
 			}
+			conn.close();
 		}
 		catch(SQLException e) {
+			e.printStackTrace();
 			fName = "";
 			lName = "";
 			userID = "";
@@ -89,6 +91,7 @@ public class User {
 				age = 0;
 				isModerator = false;
 			}
+			conn.close();
 		}
 		catch(SQLException e) {
 			fName = "";
@@ -108,11 +111,14 @@ public class User {
 			ResultSet results = statement.executeQuery(query);
 			if(results.next()) {
 				currentUserIsModerator = results.getInt("is_Moderator") == 1;
+				conn.close();
 				return true;
 			}
-			else
+			else {
 				currentUserIsModerator = false;
+				conn.close();
 				return false;
+			}
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
@@ -139,7 +145,7 @@ public class User {
 		try {
 			int isMod = isModerator ? 1:0;
 			String query = "INSERT INTO Users (fName, lName, Age, Email, is_Moderator, password) VALUES ('" + firstName + "', '" + lastName + "', " +
-					age + ", '" + email + ", '" + isMod + ", '" + password + "');";
+					age + ", '" + email + "', " + isMod + ", '" + password + "');";
 			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
 			Statement statement;
 			statement = conn.createStatement();
@@ -184,7 +190,7 @@ public class User {
 		}
 		if(containsBand) {
 			this.favoriteBands.remove(index);
-			String query = "DELETE FROM FavoriteBands WHERE band_id = '" + band.id + "' AND user_id = '" + this.userID + "');";	
+			String query = "DELETE FROM FavoriteBands WHERE band_id = '" + band.id + "' AND user_id = '" + this.userID + "';";	
 			try {
 				SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
 				Statement statement;

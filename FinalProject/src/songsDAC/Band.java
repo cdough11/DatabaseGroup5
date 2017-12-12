@@ -8,29 +8,29 @@ import org.sqlite.*;
 public class Band {
 	
 	public String id, name;
-	public Date formationDate, breakupDate;
+	public String formationDate, breakupDate;
 	public List<Member> members;
 	public List<Album> albums;
 	
-	public Band(String name, String formationDate) {
-		getInfoFromDB(name, formationDate);
+	public Band(String name) {
+		getInfoFromDB(name);
 	}
 	
-	public Band(String songID) {
-		getInfoFromDB(songID);
+	public Band(int bandID) {
+		getInfoFromDB(bandID);
 	}
 	
-	public void getInfoFromDB(String titleString, String artistString) {
-		String query = "SELECT * FROM Songs WHERE name = '" + titleString + "' AND formationDate = '" + artistString + "';";
+	public void getInfoFromDB(String bandName) {
+		String query = "SELECT * FROM Bands WHERE band_name = '" + bandName + "';";
 		try {
 			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
 			Statement statement = conn.createStatement();
 			ResultSet results = statement.executeQuery(query);
 			if(results.next()) {
 				id = results.getString("band_id");
-				name = results.getString("name");
-				formationDate = Date.valueOf(results.getString("formationDate"));
-				breakupDate = Date.valueOf(results.getString("track_number"));
+				name = results.getString("band_name");
+				formationDate = results.getString("formation_date");
+				breakupDate = results.getString("breakup_date");
 				
 				String bandMembersQuery = "SELECT * FROM BandMembers WHERE band_id = '" + id + "';";
 				Statement bandMembersStatement = conn.createStatement();
@@ -46,9 +46,13 @@ public class Band {
 				Statement albumsStatement = conn.createStatement();
 				ResultSet albumsResults = albumsStatement.executeQuery(albumsQuery);
 				albums = new ArrayList<Album>();
+				ArrayList<Integer> albumIDs = new ArrayList<Integer>();
 				while(albumsResults.next()) {
-					String albumID = albumsResults.getString("album_id");
-					albums.add(new Album(albumID));
+					albumIDs.add(albumsResults.getInt("album_id"));
+				}
+				conn.close();
+				for(Integer albumID: albumIDs) {
+					albums.add(new Album(albumID.toString()));
 				}
 			}
 			else {
@@ -60,6 +64,7 @@ public class Band {
 			}
 		}
 		catch(SQLException e) {
+			e.printStackTrace();
 			id = "";
 			name = "";
 			formationDate = null;
@@ -68,7 +73,7 @@ public class Band {
 		}
 	}
 	
-	public void getInfoFromDB(String bandID) {
+	public void getInfoFromDB(int bandID) {
 		String query = "SELECT * FROM Bands WHERE band_id = '" + bandID + "';";
 		try {
 			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
@@ -77,8 +82,8 @@ public class Band {
 			if(results.next()) {
 				id = results.getString("band_id");
 				name = results.getString("band_name");
-				formationDate = Date.valueOf(results.getString("formationDate"));
-				breakupDate = Date.valueOf(results.getString("track_number"));
+				formationDate = results.getString("formation_date");
+				breakupDate = results.getString("breakup_date");
 				
 				String bandMembersQuery = "SELECT * FROM BandMembers WHERE band_id = '" + id + "';";
 				Statement bandMembersStatement = conn.createStatement();
@@ -89,7 +94,20 @@ public class Band {
 					String lName = bandMembersResults.getString("lName");
 					members.add(new Member(fName, lName, id));
 				}
+				String albumsQuery = "SELECT * FROM Albums WHERE band_id = '" + id + "';";
+				Statement albumsStatement = conn.createStatement();
+				ResultSet albumsResults = albumsStatement.executeQuery(albumsQuery);
+				albums = new ArrayList<Album>();
+				ArrayList<Integer> albumIDs = new ArrayList<Integer>();
+				while(albumsResults.next()) {
+					albumIDs.add(albumsResults.getInt("album_id"));
+				}
+				conn.close();
+				for(Integer albumID: albumIDs) {
+					albums.add(new Album(albumID.toString()));
+				}
 			}
+			
 			else {
 				id = "";
 				name = "";
@@ -99,6 +117,7 @@ public class Band {
 			}
 		}
 		catch(SQLException e) {
+			e.printStackTrace();
 			id = "";
 			name = "";
 			formationDate = null;
@@ -119,9 +138,10 @@ public class Band {
 		}
 	}
 	public static void addBandToDB(String bandName, String formationDate, String breakupDate) {
+		SQLiteConnection conn;
 		try {
 			String query = "INSERT INTO Bands (band_name, formation_date, breakup_date) VALUES ('" + bandName + "', '" + formationDate + "', '" + breakupDate + "');";
-			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
+			conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
 			Statement statement;
 			statement = conn.createStatement();
 			statement.execute(query);

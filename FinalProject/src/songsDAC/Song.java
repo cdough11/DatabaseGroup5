@@ -26,7 +26,7 @@ public class Song {
 				id = results.getString("song_id");
 				title = results.getString("title");
 				artist = results.getString("artist");
-				trackNumber = results.getInt("track_number");
+				trackNumber = results.getInt("track");
 				length = results.getInt("length");
 				albumID = results.getString("album_id");
 			}
@@ -38,8 +38,10 @@ public class Song {
 				length = 0;
 				albumID = "";
 			}
+			conn.close();
 		}
 		catch(SQLException e) {
+			e.printStackTrace();
 			id = "";
 			title = "";
 			artist = "";
@@ -50,7 +52,7 @@ public class Song {
 	}
 	
 	public void getInfoFromDB(String songID) {
-		String query = "SELECT * FROM Songs WHERE song_id = '" + songID + "';";
+		String query = "SELECT * FROM Songs WHERE song_id = " + songID + ";";
 		try {
 			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
 			Statement statement = conn.createStatement();
@@ -59,7 +61,7 @@ public class Song {
 				id = results.getString("song_id");
 				title = results.getString("title");
 				artist = results.getString("artist");
-				trackNumber = results.getInt("track_number");
+				trackNumber = results.getInt("track");
 				length = results.getInt("length");
 				albumID = results.getString("album_id");
 			}
@@ -71,8 +73,10 @@ public class Song {
 				length = 0;
 				albumID = "";
 			}
+			conn.close();
 		}
 		catch(SQLException e) {
+			e.printStackTrace();
 			id = "";
 			title = "";
 			artist = "";

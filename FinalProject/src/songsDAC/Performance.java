@@ -1,5 +1,4 @@
 package songsDAC;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,7 +13,7 @@ public class Performance {
 
 	public List<Song> setList;
 	String duration;
-	Date date;
+	String date;
 	String venue;
 	public String id;
 	Band band;
@@ -23,7 +22,7 @@ public class Performance {
 		getInfoFromDB(performanceID);
 	}
 	
-	public Performance(Date date, String bandID) {
+	public Performance(String date, String bandID) {
 		getInfoFromDB(date, bandID);
 	}
 	
@@ -36,7 +35,7 @@ public class Performance {
 			if(results.next()) {
 				id = results.getString("performance_id");
 				duration = results.getString("duration");
-				date = Date.valueOf(results.getString("date"));
+				date = (results.getString("date"));
 				String band_id = results.getString("band_id");
 				band = new Band(band_id);
 				
@@ -59,6 +58,7 @@ public class Performance {
 				band = null;
 				setList = new ArrayList<Song>();
 			}
+			conn.close();
 		}
 		catch(SQLException e) {
 			id = "";
@@ -69,7 +69,7 @@ public class Performance {
 		}
 	}
 
-	public void getInfoFromDB(Date performanceDate, String bandID) {
+	public void getInfoFromDB(String performanceDate, String bandID) {
 		String query = "SELECT * FROM Performances WHERE date = '" + performanceDate + "' AND band_ id = '" + bandID + "';";
 		try {
 			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
@@ -78,7 +78,7 @@ public class Performance {
 			if(results.next()) {
 				id = results.getString("performance_id");
 				duration = results.getString("duration");
-				date = Date.valueOf(results.getString("date"));
+				date = (results.getString("date"));
 				String band_id = results.getString("band_id");
 				band = new Band(band_id);
 				
@@ -101,6 +101,7 @@ public class Performance {
 				band = null;
 				setList = new ArrayList<Song>();
 			}
+			conn.close();
 		}
 		catch(SQLException e) {
 			id = "";
@@ -111,7 +112,7 @@ public class Performance {
 		}
 	}
 	
-	public static void addPerformanceToDB(String duration, Date date, String venue, String bandID) {
+	public static void addPerformanceToDB(String duration, String date, String venue, String bandID) {
 		try {
 			String query = "INSERT INTO Performances (duration, date, venue, band_id) VALUES ('" + duration + "', '" + date + "', " +
 					venue + ", '" + bandID + "');";

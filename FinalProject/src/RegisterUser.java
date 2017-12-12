@@ -2,18 +2,23 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import songsDAC.User;
+
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class RegisterUser {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField firstName;
+	private JTextField lastName;
+	private JTextField age;
+	private JTextField email;
+	private JTextField password;
 
 	/**
 	 * Launch the application.
@@ -47,46 +52,46 @@ public class RegisterUser {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(204, 11, 86, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		firstName = new JTextField();
+		firstName.setBounds(204, 11, 86, 20);
+		frame.getContentPane().add(firstName);
+		firstName.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("First Name");
 		lblNewLabel.setBounds(136, 14, 58, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(204, 40, 86, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		lastName = new JTextField();
+		lastName.setBounds(204, 40, 86, 20);
+		frame.getContentPane().add(lastName);
+		lastName.setColumns(10);
 		
 		JLabel lblLastName = new JLabel("Last Name");
 		lblLastName.setBounds(136, 43, 56, 14);
 		frame.getContentPane().add(lblLastName);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(204, 71, 86, 20);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		age = new JTextField();
+		age.setBounds(204, 71, 86, 20);
+		frame.getContentPane().add(age);
+		age.setColumns(10);
 		
 		JLabel lblAge = new JLabel("Age");
 		lblAge.setBounds(136, 74, 46, 14);
 		frame.getContentPane().add(lblAge);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(204, 101, 86, 20);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
+		email = new JTextField();
+		email.setBounds(204, 101, 86, 20);
+		frame.getContentPane().add(email);
+		email.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email");
 		lblEmail.setBounds(136, 104, 46, 14);
 		frame.getContentPane().add(lblEmail);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(204, 132, 86, 20);
-		frame.getContentPane().add(textField_4);
-		textField_4.setColumns(10);
+		password = new JTextField();
+		password.setBounds(204, 132, 86, 20);
+		frame.getContentPane().add(password);
+		password.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds(136, 135, 46, 14);
@@ -97,6 +102,12 @@ public class RegisterUser {
 		frame.getContentPane().add(chckbxModerator);
 		
 		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				User.addUserToDB(firstName.getText(), lastName.getText(), Integer.parseInt(age.getText()), email.getText(), chckbxModerator.isSelected(), password.getText());
+			}
+		});
 		btnSubmit.setBounds(168, 211, 89, 23);
 		frame.getContentPane().add(btnSubmit);
 	}

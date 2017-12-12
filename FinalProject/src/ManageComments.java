@@ -9,6 +9,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextPane;
 
+import songsDAC.Comment;
+
 public class ManageComments {
 
 	private JFrame frame;
@@ -80,6 +82,7 @@ public class ManageComments {
 		submitBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Comment.deleteFromDB(textField_2.getText());
 				ModeratorGUI window = new ModeratorGUI();
 				window.makeVisible();
 			}

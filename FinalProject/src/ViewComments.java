@@ -55,7 +55,7 @@ public class ViewComments {
 		List<Comment> comments = Comment.getAllComments();
 		String commentsString = "";
 		for(Comment comment: comments) {
-			commentsString += "Performance ID: " + comment.performance.id + ", User ID: " + comment.user.userID + "\nContents: " + comment.content + "\n\n";
+			commentsString += "Performance ID: " + comment.performanceID + ", User ID: " + comment.userID + "\nContents: " + comment.content + "\n\n";
 		}
 		textPane.setText(commentsString);
 	}

@@ -21,7 +21,7 @@ public class Album {
 	}
 	
 	public void getInfoFromDB(String albumID) {
-		String query = "SELECT * FROM Albums WHERE album_id = '" + albumID + "';";
+		String query = "SELECT * FROM Albums WHERE album_id = " + albumID + ";";
 		try {
 			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
 			Statement statement = conn.createStatement();
@@ -37,10 +37,14 @@ public class Album {
 				Statement songsStatement = conn.createStatement();
 				ResultSet songsResults = songsStatement.executeQuery(songsQuery);
 				songs = new ArrayList<Song>();
+				ArrayList<Integer> songIDs = new ArrayList<Integer>();
 				while(songsResults.next()) {
-					String songID = songsResults.getString("song_id");
-					songs.add(new Song(songID));
+					songIDs.add(songsResults.getInt("song_id"));
 				}		
+				conn.close();
+				for(Integer songID: songIDs) {
+					songs.add(new Song(songID.toString()));
+				}
 			}
 			else {
 				title = "";
@@ -52,6 +56,7 @@ public class Album {
 			}
 		}
 		catch(SQLException e) {
+			e.printStackTrace();
 			title = "";
 			recordLabel = "";
 			id = "";
@@ -78,10 +83,14 @@ public class Album {
 				Statement songsStatement = conn.createStatement();
 				ResultSet songsResults = songsStatement.executeQuery(songsQuery);
 				songs = new ArrayList<Song>();
+				ArrayList<Integer> songIDs = new ArrayList<Integer>();
 				while(songsResults.next()) {
-					String songID = songsResults.getString("song_id");
-					songs.add(new Song(songID));
+					songIDs.add(songsResults.getInt("song_id"));
 				}		
+				conn.close();
+				for(Integer songID: songIDs) {
+					songs.add(new Song(songID.toString()));
+				}	
 			}
 			else {
 				title = "";
@@ -93,6 +102,7 @@ public class Album {
 			}
 		}
 		catch(SQLException e) {
+			e.printStackTrace();
 			title = "";
 			recordLabel = "";
 			id = "";

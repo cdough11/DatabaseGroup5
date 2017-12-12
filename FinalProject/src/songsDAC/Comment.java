@@ -4,19 +4,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 
 import org.sqlite.*;
 
 public class Comment {
 	
 	public String id;
-	public Date date;
+	public String date;
 	public String content;
+	public String userID;
+	public String performanceID;
 	public Performance performance;
 	public User user;
 	
-	public Comment(String user_id, String performance_id, Date date) {
+	public Comment(String user_id, String performance_id, String date) {
 		getInfoFromDB(user_id, performance_id, date);
 	}
 	
@@ -24,14 +25,14 @@ public class Comment {
 		getInfoFromDB(comment_id);
 	}
 	
-	public Comment(Date date, String content, String performanceID, String userID) {
+	public Comment(String date, String content, String performanceID, String userID) {
 		this.date = date;
 		this.content = content;
-		performance = new Performance(performanceID);
-		user = new User(userID);
+		this.performanceID = performanceID;
+		this.userID = userID;
 	}
 	
-	public void getInfoFromDB(String user_id, String performance_id, Date date) {
+	public void getInfoFromDB(String user_id, String performance_id, String date) {
 		String query = "SELECT * FROM Comments WHERE user_id = '" + user_id + "' AND performance_id = '" + performance_id +
 				"' AND date = '" + date + "';";
 		try {
@@ -41,13 +42,14 @@ public class Comment {
 			if(results.next()) {
 				id = results.getString("comment_id");
 				content = results.getString("content");
-				date = Date.valueOf(results.getString("date"));
+				date = (results.getString("date"));
 			}
 			else {
 				id = "";
 				content = "";
 				date = null;
 			}
+			conn.close();
 		}
 		catch(SQLException e) {
 			id = "";
@@ -67,7 +69,7 @@ public class Comment {
 			if(results.next()) {
 				id = results.getString("comment_id");
 				content = results.getString("content");
-				date = Date.valueOf(results.getString("date"));
+				date = (results.getString("date"));
 				String user_id = results.getString("Comments.user_id");
 				String performance_id = results.getString("Comments.performance_id");
 				user = new User(user_id);
@@ -78,6 +80,7 @@ public class Comment {
 				content = "";
 				date = null;
 			}
+			conn.close();
 		}
 		catch(SQLException e) {
 			id = "";
@@ -87,7 +90,7 @@ public class Comment {
 	}
 	
 	public static void deleteFromDB(String commentID) {
-		String query = "DELETE FROM Comments WHERE comment_id = '" + commentID + "';";
+		String query = "DELETE FROM Comments WHERE comment_id = " + commentID + ";";
 		try {
 			SQLiteConnection conn = new SQLiteConnection(DBInfo.DBFILEPATH, DBInfo.DB_NAME);
 			Statement statement;
@@ -100,7 +103,7 @@ public class Comment {
 		}
 	}
 	
-	public static void addCommentToDB(Date date, String userID, String performanceID, String contents) {
+	public static void addCommentToDB(String date, String userID, String performanceID, String contents) {
 		try {
 			String query = "INSERT INTO Comments (date, user_id, performance_id, contents) VALUES ('" + date + "', '" + userID + "', " +
 					performanceID + ", '" + contents + "');";
@@ -122,9 +125,9 @@ public class Comment {
 			Statement statement = conn.createStatement();
 			ResultSet results = statement.executeQuery(query);
 			while(results.next()) {
-				Date newDate = new Date();
+				String newDate = "";
 				try {
-					newDate = new Date((results.getString("date"));
+					newDate = (results.getString("date"));
 				}
 				catch(Exception e) {;}
 				String content = results.getString("contents");
@@ -132,6 +135,7 @@ public class Comment {
 				String userID = results.getString("user_id");
 				comments.add(new Comment(newDate, content, performanceID, userID));
 			}
+			conn.close();
 		} 
 		catch (SQLException e) {
 			e.printStackTrace();
