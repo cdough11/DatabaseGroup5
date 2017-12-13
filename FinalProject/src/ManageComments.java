@@ -48,7 +48,6 @@ public class ManageComments {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 451, 341);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblUserId = new JLabel("Band Name");

@@ -48,7 +48,6 @@ public class GUIlogin {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 282);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblUsername = new JLabel("Email:");

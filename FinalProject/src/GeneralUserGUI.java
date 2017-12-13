@@ -54,7 +54,6 @@ public class GeneralUserGUI {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 549, 386);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		editBandName = new JTextField();

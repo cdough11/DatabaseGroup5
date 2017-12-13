@@ -43,7 +43,6 @@ public class ViewAttendedPerformances {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 329);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblPerformacesAttended = new JLabel("Performaces Attended");

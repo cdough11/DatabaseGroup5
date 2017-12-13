@@ -50,7 +50,6 @@ public class ModeratorGUI {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 550, 413);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		bandNameTF = new JTextField();
